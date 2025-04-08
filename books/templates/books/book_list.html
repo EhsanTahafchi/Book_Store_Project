@@ -5,6 +5,8 @@
 {% block content %}
     {% for book in books %}
         <a href="{{ book.get_absolute_url }}"><h1>{{ book.title }}</h1></a>
+        <p>{{ book.description | truncatewords:5 }}</p>
+        <p>{{ book.author }}</p>
     {% endfor %}
     <br>
     <a href="{% url 'book_create' %}">اضافه کردن کتاب جدید</a>

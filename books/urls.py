@@ -9,6 +9,4 @@ urlpatterns = [
     path('<int:pk>/edit/', BookUpdateView.as_view(), name='book_update'),
     path('<int:pk>/delete/', BookDeleteView.as_view(), name='book_delete'),
 
-
-
 ]
