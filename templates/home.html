@@ -4,17 +4,17 @@
 
 {% block content %}
     <h1>HomePage</h1>
-    {% if user.is_authenticated %}
-        <p>
-            welcome {{ user.username }} |
-            <form action="{% url 'logout' %}" method="post">
-            {% csrf_token %}
-            <button type="submit">Logout</button>
-            </form>
-        </p>
-    {% else %}
-        <a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Signup</a>
-    {% endif %}
+{#    {% if user.is_authenticated %}#}
+{#        <p>#}
+{#            welcome {{ user.username }} |#}
+{#            <form action="{% url 'logout' %}" method="post">#}
+{#            {% csrf_token %}#}
+{#            <button type="submit">Logout</button>#}
+{#            </form>#}
+{#        </p>#}
+{#    {% else %}#}
+{#        <a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Signup</a>#}
+{#    {% endif %}#}
 {% endblock content %}
 
 
