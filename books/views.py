@@ -21,7 +21,10 @@ class BookListView(generic.ListView):
 @login_required
 def book_detail_view(request, pk):
     book = get_object_or_404(Book, pk=pk)
+    is_favourite = False
     book_comments = book.comments.all()
+    if book.favourite.filter(pk=request.user.id).exists():
+        is_favourite = True
     if request.method == 'POST':
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
@@ -34,7 +37,7 @@ def book_detail_view(request, pk):
         comment_form = CommentForm()
 
     return render(request, 'books/book_detail.html',
-                  {'book': book, 'comments': book_comments, 'comment_form': comment_form})
+                  {'book': book, 'comments': book_comments, 'comment_form': comment_form, 'is_favourite': is_favourite})
 
 
 class BookCreateView(LoginRequiredMixin, generic.CreateView):
