@@ -90,3 +90,4 @@ def favourite_book_list(request):
     user = request.user
     favourite_books = user.favourite.all()
     return render(request, 'books/favourite_book_list.html', {'favourite_book': favourite_books})
+
