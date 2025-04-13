@@ -10,6 +10,7 @@ class Book(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=3)
     cover = models.ImageField(upload_to='covers/', blank=True)
+    favourite = models.ManyToManyField(get_user_model(), related_name='favourite', blank=True)
 
     def __str__(self):
         return self.title

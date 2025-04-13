@@ -19,7 +19,7 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-6 text-center text-md-end mt-md-1 mt-4">
-                            <h1>{{ book.title }}</h1>
+                            <h1 style="font-size: 30px">{{ book.title }}</h1>
                             <h5 class="small my-1"><span class="text-muted">نویسنده: </span>{{ book.author }}</h5>
                             <h5 class="small my-1"><span class="text-muted">ایجاد کننده: </span>{{ book.user.username }}
                             </h5>
@@ -30,6 +30,13 @@
                                 <a href="{% url 'book_delete' book.id %}"><button type="button" class="btn btn-danger">حذف</button></a>
                             </div>
                             {% endif %}
+                            <div id="favourite-section" class="m-3" style="font-size: 25px">
+                                {% if is_favourite %}
+                                    <a href="{% url 'favourite_book' book.id %}"><i class="fa-solid fa-heart" style="color: #ff0000;"></i></a>
+                                {% else %}
+                                    <a href="{% url 'favourite_book' book.id %}"><i class="fa-regular fa-heart" style="color: #ff0000;"></i></a>
+                                {% endif %}
+                            </div>
                         </div>
                         <div class="col-xs-12 col-md-3 d-flex flex-column">
                             <h3 class="align-self-center pt-2 text-muted align-self-md-end">

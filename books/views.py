@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.views import generic
 from .models import Book
 from django.urls import reverse_lazy
-from django.shortcuts import get_object_or_404, render
-from .forms import CommentForm
+from django.shortcuts import get_object_or_404, render, HttpResponseRedirect
+from .forms import CommentForm, SearchForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 
@@ -61,3 +61,29 @@ class BookDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView
     def test_func(self):
         obj = self.get_object()
         return obj.user == self.request.user
+
+
+def book_search(request):
+    books = Book.objects.all()
+    form = SearchForm()
+    if 'search' in request.GET:
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            cd = form.cleaned_data['search']
+            books = Book.objects.filter(title__icontains=cd)
+    return render(request, 'books/book_search.html', {'books': books, 'form': form})
+
+
+def favourite_book(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    if book.favourite.filter(pk=request.user.id).exists():
+        book.favourite.remove(request.user)
+    else:
+        book.favourite.add(request.user)
+    return HttpResponseRedirect(book.get_absolute_url())
+
+
+def favourite_book_list(request):
+    user = request.user
+    favourite_books = user.favourite.all()
+    return render(request, 'books/favourite_book_list.html', {'favourite_book': favourite_books})

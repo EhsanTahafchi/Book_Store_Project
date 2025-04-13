@@ -16,10 +16,10 @@
                         <div class="col-md-8 h-100">
                             <div class="d-flex flex-column justify-content-between h-100">
                                 <div class="card-body">
-                                    <a class="text-decoration-none" href="{{ book.get_absolute_url }}"><h3
-                                            class="card-title"><strong>{{ book.title }}</strong></h3></a>
-                                    <p class="card-text pt-3">{{ book.description | truncatewords:30 }}</p>
-                                    <p class="text-muted"> نویسنده: {{ book.author }}</p>
+                                    <a class="text-decoration-none" href="{{ book.get_absolute_url }}"><h4
+                                            class="card-title"><strong>{{ book.title }}</strong></h4></a>
+                                    <p class="card-text pt-3" style="font-size: 15px">{{ book.description | truncatewords:30 }}</p>
+                                    <p class="text-muted" style="font-size: 15px"> نویسنده: {{ book.author }}</p>
                                 </div>
                             </div>
                         </div>
@@ -39,11 +39,6 @@
             {% endif %}
         </ul>
     </nav>
-    <footer class="bg-light text-center text-lg-start mt-5">
-        <div class="text-center bg-grey">
-            <p>دوره آموزشی جنگو <a class="text-dark" href="https://codingyar.com/" target="_blank">کدینگ یار</a></p>
-        </div>
-    </footer>
 {% endblock content %}
 
 
