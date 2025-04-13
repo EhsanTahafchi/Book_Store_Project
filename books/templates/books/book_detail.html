@@ -60,9 +60,9 @@
                                 <div class="border-bottom mb-3">
                                     <h5 class="mb-3">{{ comment.user.username }}</h5>
                                     {% if comment.recommend %}
-                                        <p>توصیه میکنم</p>
+                                        <p style="color: red">توصیه میکنم</p>
                                     {% else %}
-                                        <p>توصیه نمیکنم</p>
+                                        <p style="color: red">توصیه نمیکنم</p>
                                     {% endif %}
                                     <p>{{ comment.text | linebreaks }}</p>
                                 </div>

@@ -42,13 +42,13 @@ def book_detail_view(request, pk):
 
 class BookCreateView(LoginRequiredMixin, generic.CreateView):
     model = Book
-    fields = ['title', 'author', 'description', 'price', 'cover']
+    fields = ['user', 'title', 'author', 'description', 'price', 'cover']
     template_name = 'books/book_create.html'
 
 
 class BookUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = Book
-    fields = ['title', 'author', 'description', 'price', 'cover']
+    fields = ['user', 'title', 'author', 'description', 'price', 'cover']
     template_name = 'books/book_update.html'
 
     def test_func(self):
